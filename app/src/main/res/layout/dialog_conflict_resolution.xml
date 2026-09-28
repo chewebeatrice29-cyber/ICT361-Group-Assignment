@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sync Conflict Detected"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#C62828"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This record was modified on another device. Please compare and choose which state to keep:"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tvLocalProposalDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Local Edit:\nName: John Doe\nProg: CS | Group: G01"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="#FFF3E0"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvServerRecordDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Server Record:\nName: John Doe Updated\nProg: IT | Group: G02"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="#E8F5E9"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnAcceptServer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keep Server State"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnKeepLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Force Local Edit" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MUConnect</string>
+    <string name="title_login">Sign In to MUConnect</string>
+    <string name="title_register">Student Registration - MUConnect</string>
+    <string name="title_student_profile">My Student Profile</string>
+    <string name="title_lecturer_roster">Lecturer Student Roster</string>
+    <string name="title_add_student">Add New Student</string>
+    <string name="title_edit_student">Edit Student Record</string>
+
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+    <string name="label_claim_code">Claim Code (Optional / Seeded)</string>
+    <string name="label_student_number">Student Number (9 digits)</string>
+    <string name="label_student_name">Student Name (Full Name)</string>
+    <string name="label_programme">Programme of Study</string>
+    <string name="label_lab_group">Lab Group</string>
+
+    <string name="btn_login">Sign In</string>
+    <string name="btn_register">Register Account</string>
+    <string name="btn_save">Save Changes</string>
+    <string name="btn_delete">Delete Student</string>
+    <string name="btn_request_group">Request Group Change</string>
+    <string name="btn_share_summary">Share Group Summary</string>
+    <string name="btn_sync_now">Sync Now</string>
+
+    <string name="filter_all">All</string>
+    <string name="filter_unassigned">Unassigned</string>
+    <string name="group_max_capacity_info">Lab Group Capacity: Max 15 active students per group</string>
+    <string name="offline_banner_text">You are offline. Your changes are saved locally and will sync when back online.</string>
+
+    <!-- TalkBack Accessibility Descriptions -->
+    <string name="cd_search_input">Search student name or 9 digit number</string>
+    <string name="cd_programme_filter">Filter by programme of study</string>
+    <string name="cd_group_filter">Filter by lab group assignment</string>
+    <string name="cd_add_student_fab">Add new student record</string>
+    <string name="cd_sync_status">Sync status indicator</string>
+</resources>
