@@ -2,54 +2,38 @@ package com.example.labgroupmanager.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.labgroupmanager.R;
-import com.example.labgroupmanager.data.local.SessionManager;
 import com.google.android.material.card.MaterialCardView;
 
 public class RoleSelectionActivity extends AppCompatActivity {
-
-    private MaterialCardView cardStudentPortal, cardLecturerPortal;
-    private CheckBox cbRememberChoice;
-    private Button btnQuickBypass;
-    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_selection);
 
-        sessionManager = new SessionManager(this);
+        MaterialCardView cardStudentPortal = findViewById(R.id.cardStudentPortal);
+        MaterialCardView cardLecturerPortal = findViewById(R.id.cardLecturerPortal);
+        TextView tvBackToLogin = findViewById(R.id.tvBackToLogin);
 
-        cardStudentPortal = findViewById(R.id.cardStudentPortal);
-        cardLecturerPortal = findViewById(R.id.cardLecturerPortal);
-        cbRememberChoice = findViewById(R.id.cbRememberChoice);
-        btnQuickBypass = findViewById(R.id.btnQuickBypass);
+        if (cardStudentPortal != null) {
+            cardStudentPortal.setOnClickListener(v ->
+                    startActivity(new Intent(RoleSelectionActivity.this, RegisterActivity.class))
+            );
+        }
 
-        cardStudentPortal.setOnClickListener(v -> {
-            if (cbRememberChoice.isChecked()) {
-                sessionManager.setRememberedPortal("STUDENT");
-            }
-            startActivity(new Intent(RoleSelectionActivity.this, StudentLoginActivity.class));
-        });
+        if (cardLecturerPortal != null) {
+            cardLecturerPortal.setOnClickListener(v ->
+                    startActivity(new Intent(RoleSelectionActivity.this, RegisterActivity.class))
+            );
+        }
 
-        cardLecturerPortal.setOnClickListener(v -> {
-            if (cbRememberChoice.isChecked()) {
-                sessionManager.setRememberedPortal("LECTURER");
-            }
-            startActivity(new Intent(RoleSelectionActivity.this, LecturerLoginActivity.class));
-        });
-
-        btnQuickBypass.setOnClickListener(v -> {
-            Toast.makeText(this, "Admin Access Granted", Toast.LENGTH_SHORT).show();
-            sessionManager.saveSession("bypass-token", "admin-id", "gigz", "LECTURER", null);
-            startActivity(new Intent(RoleSelectionActivity.this, LecturerHomeActivity.class));
-            finish();
-        });
+        if (tvBackToLogin != null) {
+            tvBackToLogin.setOnClickListener(v -> finish());
+        }
     }
 }

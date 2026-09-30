@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputEditText etUsername;
     private TextInputEditText etPassword;
+    private TextView tvForgotPassword;
     private Button btnLogin;
-    private Button btnGoToRegister;
+    private Button btnCreateAccount;
     private ProgressBar progressBar;
 
     private AuthViewModel authViewModel;
@@ -42,8 +44,9 @@ public class LoginActivity extends AppCompatActivity {
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnGoToRegister = findViewById(R.id.btnGoToRegister);
+        btnCreateAccount = findViewById(R.id.btnCreateAccount);
         progressBar = findViewById(R.id.progressBarLogin);
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
@@ -66,37 +69,38 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        View.OnClickListener loginClickListener = v -> attemptLoginOrBypass();
-
-        btnLogin.setOnClickListener(loginClickListener);
+        btnLogin.setOnClickListener(v -> attemptLoginOrBypass());
 
         etPassword.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_NEXT) {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO) {
                 attemptLoginOrBypass();
                 return true;
             }
             return false;
         });
 
-        btnGoToRegister.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        tvForgotPassword.setOnClickListener(v -> {
+            Toast.makeText(this, "Password Reset: Contact administrator or check registered email.", Toast.LENGTH_LONG).show();
+        });
+
+        btnCreateAccount.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RoleSelectionActivity.class));
         });
     }
 
     private void attemptLoginOrBypass() {
-        String username = etUsername.getText() != null ? etUsername.getText().toString().trim() : "";
+        String inputId = etUsername.getText() != null ? etUsername.getText().toString().trim() : "";
         String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
 
-        // If no credentials have been entered, allow guest / admin bypass access immediately!
-        if (username.isEmpty() && password.isEmpty()) {
-            Toast.makeText(this, "Lecturer Guest Access Granted (Bypassed)", Toast.LENGTH_SHORT).show();
-            // Save admin session as guest/admin ("gigz" / LECTURER)
-            sessionManager.saveSession("guest-bypass-token", "admin-account-id", "gigz", "LECTURER", null);
+        // If no credentials entered, allow guest/admin bypass
+        if (inputId.isEmpty() && password.isEmpty()) {
+            Toast.makeText(this, "Login Access Granted (Guest Mode)", Toast.LENGTH_SHORT).show();
+            sessionManager.saveSession("bypass-token", "admin-account-id", "gigz", "LECTURER", null);
             navigateToHome();
             return;
         }
 
-        authViewModel.login(username, password);
+        authViewModel.login(inputId, password);
     }
 
     private void navigateToHome() {

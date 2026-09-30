@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -7,21 +8,23 @@
     android:background="#1565C0"
     android:padding="24dp">
 
-    <!-- University Header Emblem Badge -->
-    <LinearLayout
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/ic_launcher_background"
-        android:gravity="center"
-        android:layout_marginBottom="20dp"
-        android:elevation="6dp">
+    <!-- Center Logo Badge -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#FFFFFF">
 
         <ImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:src="@drawable/ic_launcher_foreground"
-            android:contentDescription="University Logo" />
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:src="@drawable/mulungushi_logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="Mulungushi University Crest" />
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,23 +33,32 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:layout_marginBottom="4dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:letterSpacing="0.03"
+        android:layout_marginBottom="6dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MUConnect Portal"
-        android:textSize="28sp"
+        android:text="MULUNGUSHI REGISTRATION SYSTEM"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="#E3F2FD"
-        android:layout_marginBottom="28dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:letterSpacing="0.04"
+        android:layout_marginBottom="40dp" />
 
-    <ProgressBar
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="#FFFFFF"
-        android:layout_marginTop="16dp" />
+        android:text="loading"
+        android:textSize="14sp"
+        android:textColor="#E3F2FD"
+        android:layout_marginBottom="12dp" />
+
+    <ProgressBar
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:indeterminateTint="#FFFFFF" />
 
 </LinearLayout>

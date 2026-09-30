@@ -8,14 +8,16 @@ import androidx.room.RoomDatabase;
 
 import com.example.labgroupmanager.data.model.Student;
 import com.example.labgroupmanager.data.model.SyncOperation;
+import com.example.labgroupmanager.data.model.UserAccount;
 
-@Database(entities = {Student.class, SyncOperation.class}, version = 1, exportSchema = false)
+@Database(entities = {Student.class, SyncOperation.class, UserAccount.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
 
     public abstract StudentDao studentDao();
     public abstract SyncOperationDao syncOperationDao();
+    public abstract UserAccountDao userAccountDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {

@@ -20,14 +20,17 @@ public class SplashActivity extends AppCompatActivity {
         SessionManager sessionManager = new SessionManager(this);
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            String remembered = sessionManager.getRememberedPortal();
-            if ("STUDENT".equals(remembered)) {
-                startActivity(new Intent(SplashActivity.this, StudentLoginActivity.class));
-            } else if ("LECTURER".equals(remembered)) {
-                startActivity(new Intent(SplashActivity.this, LecturerLoginActivity.class));
+            if (sessionManager.isLoggedIn()) {
+                Intent intent;
+                if (sessionManager.isLecturer()) {
+                    intent = new Intent(SplashActivity.this, LecturerHomeActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, StudentHomeActivity.class);
+                }
+                startActivity(intent);
             } else {
-                // Always reset to Choice screen on startup unless remembered
-                startActivity(new Intent(SplashActivity.this, RoleSelectionActivity.class));
+                // Step 2: Login Page
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
             finish();
         }, 1500);

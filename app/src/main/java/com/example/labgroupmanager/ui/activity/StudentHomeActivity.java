@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,12 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.labgroupmanager.R;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.card.MaterialCardView;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
-    private TextView tvStudentHomeGreeting, tvHomeGroupTitle, tvHomeGroupOccupancy;
-    private Button btnViewGroupDetails, btnShortcutProfile, btnShortcutGroup, btnShortcutNotifications;
-    private ImageView ivNotificationBell;
+    private TextView tvStudentHomeGreeting, tvStudentSubDetail, tvHomeGroupTitle, tvHomeGroupOccupancy;
+    private Button btnViewGroupDetails, btnViewSchedule;
+    private ImageView ivNotificationBell, ivSettingsIcon;
+    private MaterialCardView cardShortcutProfile, cardShortcutGroup, cardShortcutMessages, cardShortcutNotifs, cardShortcutSchedule, cardShortcutCourses;
     private BottomNavigationView bottomNavStudent;
 
     private StudentViewModel studentViewModel;
@@ -28,14 +31,23 @@ public class StudentHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_home);
 
         tvStudentHomeGreeting = findViewById(R.id.tvStudentHomeGreeting);
+        tvStudentSubDetail = findViewById(R.id.tvStudentSubDetail);
         tvHomeGroupTitle = findViewById(R.id.tvHomeGroupTitle);
         tvHomeGroupOccupancy = findViewById(R.id.tvHomeGroupOccupancy);
 
         btnViewGroupDetails = findViewById(R.id.btnViewGroupDetails);
-        btnShortcutProfile = findViewById(R.id.btnShortcutProfile);
-        btnShortcutGroup = findViewById(R.id.btnShortcutGroup);
-        btnShortcutNotifications = findViewById(R.id.btnShortcutNotifications);
+        btnViewSchedule = findViewById(R.id.btnViewSchedule);
+
         ivNotificationBell = findViewById(R.id.ivNotificationBell);
+        ivSettingsIcon = findViewById(R.id.ivSettingsIcon);
+
+        cardShortcutProfile = findViewById(R.id.cardShortcutProfile);
+        cardShortcutGroup = findViewById(R.id.cardShortcutGroup);
+        cardShortcutMessages = findViewById(R.id.cardShortcutMessages);
+        cardShortcutNotifs = findViewById(R.id.cardShortcutNotifs);
+        cardShortcutSchedule = findViewById(R.id.cardShortcutSchedule);
+        cardShortcutCourses = findViewById(R.id.cardShortcutCourses);
+
         bottomNavStudent = findViewById(R.id.bottomNavStudent);
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
@@ -43,16 +55,24 @@ public class StudentHomeActivity extends AppCompatActivity {
         studentViewModel.getOwnStudentProfile().observe(this, student -> {
             if (student != null) {
                 tvStudentHomeGreeting.setText("Hello, " + student.getStudentName());
+                tvStudentSubDetail.setText(student.getProgramme() + "  •  " + student.getStudentNumber());
                 tvHomeGroupTitle.setText("Group " + student.getLabGroup());
                 tvHomeGroupOccupancy.setText("Active Group Assignment");
             }
         });
 
         btnViewGroupDetails.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
-        btnShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
-        btnShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
-        btnShortcutNotifications.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+        btnViewSchedule.setOnClickListener(v -> Toast.makeText(this, "Next Lab Session: Monday 10:00 AM at Computer Lab 2", Toast.LENGTH_LONG).show());
+
         ivNotificationBell.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+        ivSettingsIcon.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+
+        cardShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        cardShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        cardShortcutMessages.setOnClickListener(v -> Toast.makeText(this, "Messages: 2 unread broadcast messages.", Toast.LENGTH_SHORT).show());
+        cardShortcutNotifs.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+        cardShortcutSchedule.setOnClickListener(v -> Toast.makeText(this, "Lab Schedule: Mon 10:00 AM Computer Lab 2", Toast.LENGTH_SHORT).show());
+        cardShortcutCourses.setOnClickListener(v -> Toast.makeText(this, "Enrolled Courses: ICT361 Mobile App Development", Toast.LENGTH_SHORT).show());
 
         bottomNavStudent.setSelectedItemId(R.id.nav_home);
         bottomNavStudent.setOnItemSelectedListener(item -> {
