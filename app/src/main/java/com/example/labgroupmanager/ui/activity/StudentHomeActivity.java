@@ -66,26 +66,30 @@ public class StudentHomeActivity extends AppCompatActivity {
             }
         });
 
-        btnViewGroupDetails.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        btnViewGroupDetails.setOnClickListener(v -> startActivity(new Intent(this, GroupDetailsActivity.class)));
         btnViewSchedule.setOnClickListener(v -> Toast.makeText(this, "Next Lab Session: Monday 10:00 AM at Computer Lab 2", Toast.LENGTH_LONG).show());
 
         ivNotificationBell.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
-        ivSettingsIcon.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        ivSettingsIcon.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
-        cardShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
-        cardShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
-        cardShortcutMessages.setOnClickListener(v -> Toast.makeText(this, "Messages: 2 unread broadcast messages.", Toast.LENGTH_SHORT).show());
+        // Profile options accessed under Settings / Options
+        cardShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
+        cardShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupDetailsActivity.class)));
+        cardShortcutMessages.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
         cardShortcutNotifs.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
         cardShortcutSchedule.setOnClickListener(v -> Toast.makeText(this, "Lab Schedule: Mon 10:00 AM Computer Lab 2", Toast.LENGTH_SHORT).show());
-        cardShortcutCourses.setOnClickListener(v -> Toast.makeText(this, "Enrolled Courses: ICT361 Mobile App Development", Toast.LENGTH_SHORT).show());
+        cardShortcutCourses.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
         bottomNavStudent.setSelectedItemId(R.id.nav_home);
         bottomNavStudent.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 return true;
-            } else if (id == R.id.nav_profile || id == R.id.nav_group) {
-                startActivity(new Intent(this, StudentProfileActivity.class));
+            } else if (id == R.id.nav_group) {
+                startActivity(new Intent(this, GroupDetailsActivity.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             } else if (id == R.id.nav_notifications) {
                 startActivity(new Intent(this, NotificationsActivity.class));

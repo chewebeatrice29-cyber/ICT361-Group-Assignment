@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -86,7 +85,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
         if (tvLecturerViewAllStudents != null) tvLecturerViewAllStudents.setOnClickListener(openRosterListener);
 
         if (ivLecturerNotifBell != null) ivLecturerNotifBell.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
-        if (ivLecturerSettings != null) ivLecturerSettings.setOnClickListener(v -> Toast.makeText(this, "Lecturer Settings: System is online.", Toast.LENGTH_SHORT).show());
+        if (ivLecturerSettings != null) ivLecturerSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
         if (btnLecturerAddStudent != null) {
             btnLecturerAddStudent.setOnClickListener(v -> startActivity(new Intent(this, StudentEditorActivity.class)));
@@ -97,7 +96,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
         }
 
         if (btnLecturerBroadcast != null) {
-            btnLecturerBroadcast.setOnClickListener(v -> Toast.makeText(this, "📢 Announcement broadcasted to all registered students.", Toast.LENGTH_LONG).show());
+            btnLecturerBroadcast.setOnClickListener(v -> startActivity(new Intent(this, SendMessageActivity.class)));
         }
 
         if (bottomNavLecturer != null) {
@@ -113,7 +112,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
                     startActivity(new Intent(this, NotificationsActivity.class));
                     return true;
                 } else if (id == R.id.nav_lecturer_profile) {
-                    Toast.makeText(this, "Lecturer Profile: " + sessionManager.getUsername(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, SettingsActivity.class));
                     return true;
                 }
                 return false;

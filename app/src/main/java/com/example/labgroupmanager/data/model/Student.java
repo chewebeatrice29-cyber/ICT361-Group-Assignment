@@ -2,6 +2,7 @@ package com.example.labgroupmanager.data.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -30,6 +31,9 @@ public class Student {
     @SerializedName("labGroup")
     private String labGroup; // G01, G02, G03, G04, Unassigned
 
+    @SerializedName("courses")
+    private String courses; // Enrolled courses e.g. "ICT361, BMG, Cyber Security"
+
     @SerializedName("accountId")
     private String accountId;
 
@@ -43,17 +47,25 @@ public class Student {
     private String syncStatus; // SAVED_LOCALLY, PENDING, SYNCING, SYNCED, CONFLICT
 
     public Student(@NonNull String studentId, @NonNull String studentNumber, @NonNull String studentName,
-                   @NonNull String programme, @NonNull String labGroup, String accountId,
+                   @NonNull String programme, @NonNull String labGroup, String courses, String accountId,
                    int version, boolean isDeleted, @NonNull String syncStatus) {
         this.studentId = studentId;
         this.studentNumber = studentNumber;
         this.studentName = studentName;
         this.programme = programme;
         this.labGroup = labGroup;
+        this.courses = courses != null ? courses : "ICT361, BMG, Cyber Security";
         this.accountId = accountId;
         this.version = version;
         this.isDeleted = isDeleted;
         this.syncStatus = syncStatus;
+    }
+
+    @Ignore
+    public Student(@NonNull String studentId, @NonNull String studentNumber, @NonNull String studentName,
+                   @NonNull String programme, @NonNull String labGroup, String accountId,
+                   int version, boolean isDeleted, @NonNull String syncStatus) {
+        this(studentId, studentNumber, studentName, programme, labGroup, "ICT361, BMG, Cyber Security", accountId, version, isDeleted, syncStatus);
     }
 
     @NonNull
@@ -75,6 +87,9 @@ public class Student {
     @NonNull
     public String getLabGroup() { return labGroup; }
     public void setLabGroup(@NonNull String labGroup) { this.labGroup = labGroup; }
+
+    public String getCourses() { return courses != null ? courses : "ICT361, BMG, Cyber Security"; }
+    public void setCourses(String courses) { this.courses = courses; }
 
     public String getAccountId() { return accountId; }
     public void setAccountId(String accountId) { this.accountId = accountId; }

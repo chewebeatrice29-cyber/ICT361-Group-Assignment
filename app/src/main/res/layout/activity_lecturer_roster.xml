@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
-    android:backgroundTint="#FFFFFF">
+    android:background="@color/background_light">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,19 +15,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#2196F3"
                 android:text="@string/title_lecturer_roster"
-                android:textColor="@color/primary_dark"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primary_dark" />
 
             <Button
                 android:id="@+id/btnShareSummary"
@@ -36,7 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Share"
-                app:icon="@android:drawable/ic_menu_share" />
+                android:textColor="#1565C0"
+                app:icon="@android:drawable/ic_menu_share"
+                app:iconTint="#1565C0" />
 
             <Button
                 android:id="@+id/btnSyncNow"
@@ -44,7 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sync"
-                app:icon="@android:drawable/stat_notify_sync" />
+                android:textColor="#1565C0"
+                app:icon="@android:drawable/stat_notify_sync"
+                app:iconTint="#1565C0" />
         </LinearLayout>
 
         <!-- Active Group Counts Card -->
@@ -59,92 +61,89 @@
                 android:id="@+id/tvGroupCountsSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#8A98E6"
-                android:backgroundTint="#ABAEB3"
                 android:padding="10dp"
                 android:text="Group Totals: G01: 0/15 | G02: 0/15 | G03: 0/15 | G04: 0/15 | Unassigned: 0"
-                android:textColor="@color/text_primary"
                 android:textSize="13sp"
+                android:textColor="@color/primary_dark"
                 android:textStyle="bold" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Search Bar -->
+        <!-- Search Bar (Crystal Clear High Contrast) -->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            app:boxBackgroundColor="@color/text_field_bg"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/primary"
-            app:boxStrokeWidth="2dp">
+            app:boxBackgroundColor="#E3F2FD"
+            app:boxStrokeColor="#1565C0"
+            app:boxStrokeWidth="2dp"
+            app:hintTextColor="#1565C0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSearchQuery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#7F7F81"
-                android:contentDescription="@string/cd_search_input"
+                android:textColor="#0D233A"
+                android:textColorHint="#4A5568"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:hint="Search student name or 9-digit number..."
-                android:inputType="text"
-                android:textColor="@color/text_primary"
-                android:textColorLink="#1B1B1B"
-                android:visibility="visible" />
+                android:contentDescription="@string/cd_search_input"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Filters Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginEnd="4dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Programme Filter"
+                    android:textColor="#0D233A"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinnerFilterProgramme"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:background="@color/text_primary"
-                    android:backgroundTint="#7982A9"
+                    android:layout_height="46dp"
+                    android:background="#E3F2FD"
                     android:contentDescription="@string/cd_programme_filter" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="4dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Group Filter"
+                    android:textColor="#0D233A"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinnerFilterGroup"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:background="@color/text_primary"
-                    android:backgroundTint="#777FAB"
-                    android:contentDescription="@string/cd_group_filter"
-                    android:foregroundTint="#1F0C0C"
-                    android:visibility="visible" />
+                    android:layout_height="46dp"
+                    android:background="#E3F2FD"
+                    android:contentDescription="@string/cd_group_filter" />
             </LinearLayout>
         </LinearLayout>
 
@@ -152,9 +151,7 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F4F4F4"
-            android:backgroundTint="#FFFFFF">
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvStudentRoster"

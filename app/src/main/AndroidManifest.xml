@@ -69,6 +69,15 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activity.SendMessageActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".ui.activity.LecturerHomeActivity"
             android:exported="false" />
 

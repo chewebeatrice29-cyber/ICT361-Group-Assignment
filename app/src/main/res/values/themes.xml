@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.LabGroupManager" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.LabGroupManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorSecondary">@color/color_accent</item>

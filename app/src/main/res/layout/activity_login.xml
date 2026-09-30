@@ -58,17 +58,18 @@
                 android:gravity="center"
                 android:layout_marginBottom="32dp" />
 
-            <!-- Input 1: Email or student/Lecturer ID -->
+            <!-- Input 1: Email or student/Lecturer ID (Crystal Clear High Contrast) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@color/text_field_bg"
-                app:boxStrokeColor="@color/primary"
+                app:boxBackgroundColor="#E3F2FD"
+                app:boxStrokeColor="#1565C0"
                 app:boxStrokeWidth="2dp"
+                app:hintTextColor="#1565C0"
                 app:startIconDrawable="@android:drawable/ic_menu_myplaces"
-                app:startIconTint="@color/primary"
+                app:startIconTint="#1565C0"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -76,24 +77,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email or student/Lecturer ID"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_secondary"
+                    android:textColor="#0D233A"
+                    android:textColorHint="#4A5568"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Input 2: Password with End Icon Toggle -->
+            <!-- Input 2: Password with End Icon Toggle (Crystal Clear High Contrast) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 app:boxBackgroundMode="outline"
-                app:boxBackgroundColor="@color/text_field_bg"
-                app:boxStrokeColor="@color/primary"
+                app:boxBackgroundColor="#E3F2FD"
+                app:boxStrokeColor="#1565C0"
                 app:boxStrokeWidth="2dp"
+                app:hintTextColor="#1565C0"
                 app:startIconDrawable="@android:drawable/ic_secure"
-                app:startIconTint="@color/primary"
+                app:startIconTint="#1565C0"
                 app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#1565C0"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -101,8 +106,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_secondary"
+                    android:textColor="#0D233A"
+                    android:textColorHint="#4A5568"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     android:inputType="textPassword"
                     android:imeOptions="actionDone" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,7 +123,7 @@
                 android:text="forgot password?"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/color_accent"
+                android:textColor="#1565C0"
                 android:layout_marginBottom="24dp"
                 android:clickable="true"
                 android:focusable="true" />
@@ -130,7 +137,8 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="#1565C0"
+                android:textColor="#FFFFFF"
                 app:cornerRadius="12dp"
                 android:layout_marginBottom="24dp" />
 
@@ -151,9 +159,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="@color/primary_dark"
+                android:textColor="#0D233A"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                app:strokeColor="@color/primary"
+                app:strokeColor="#1565C0"
                 app:cornerRadius="12dp"
                 android:layout_marginBottom="16dp" />
 
