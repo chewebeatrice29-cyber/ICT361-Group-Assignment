@@ -9,7 +9,7 @@ async function seedDatabase() {
   try {
     await connection.beginTransaction();
 
-    // 1. Seed Lecturer Account
+    // 1. Seed Lecturer Account ("lecturer" / "lecturer123")
     const lecturerPasswordHash = await bcrypt.hash('lecturer123', 10);
     const lecturerAccountId = uuidv4();
 
@@ -29,7 +29,23 @@ async function seedDatabase() {
     );
     console.log('✔ Super Admin account created: username="gigz", password="12345678"');
 
-    // 3. Seed Fictitious Claim Codes & Student Claim Records
+    // 3. Seed Requested Student Account ("202109428" / "12345678")
+    const studentPasswordHash = await bcrypt.hash('12345678', 10);
+    const studentAccId = uuidv4();
+
+    await connection.query(
+      'INSERT INTO accounts (account_id, username, password_hash, role) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE password_hash=VALUES(password_hash)',
+      [studentAccId, '202109428', studentPasswordHash, 'STUDENT']
+    );
+
+    const studentProfileId = uuidv4();
+    await connection.query(
+      'INSERT INTO students (student_id, student_number, student_name, programme, lab_group, account_id, version, is_deleted) VALUES (?, ?, ?, ?, ?, ?, 1, 0) ON DUPLICATE KEY UPDATE student_name=VALUES(student_name)',
+      [studentProfileId, '202109428', 'James Banda', 'CS', 'G01', studentAccId]
+    );
+    console.log('✔ Student account created: username="202109428", password="12345678" -> Student Home Page');
+
+    // 4. Seed Fictitious Claim Codes
     const claimCodes = [
       { code: 'CLAIM-20250001', number: '202500001', name: 'Mulenga Chanda', prog: 'CS' },
       { code: 'CLAIM-20250002', number: '202500002', name: 'Bwalya Banda', prog: 'IT' },
@@ -46,7 +62,7 @@ async function seedDatabase() {
     }
     console.log(`✔ ${claimCodes.length} claim codes seeded.`);
 
-    // 4. Seed Sample Initial Active Students across Groups
+    // 5. Seed Sample Active Students
     const sampleStudents = [
       { number: '202500010', name: 'Thandiwe Musonda', prog: 'CS', group: 'G01' },
       { number: '202500011', name: 'Kondwani Tembo', prog: 'IT', group: 'G01' },
