@@ -3,14 +3,13 @@ package com.example.labgroupmanager.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.labgroupmanager.R;
-import com.example.labgroupmanager.data.local.SessionManager;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,17 +17,15 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     private TextView tvStudentHomeGreeting, tvHomeGroupTitle, tvHomeGroupOccupancy;
     private Button btnViewGroupDetails, btnShortcutProfile, btnShortcutGroup, btnShortcutNotifications;
+    private ImageView ivNotificationBell;
     private BottomNavigationView bottomNavStudent;
 
     private StudentViewModel studentViewModel;
-    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
-
-        sessionManager = new SessionManager(this);
 
         tvStudentHomeGreeting = findViewById(R.id.tvStudentHomeGreeting);
         tvHomeGroupTitle = findViewById(R.id.tvHomeGroupTitle);
@@ -38,6 +35,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         btnShortcutProfile = findViewById(R.id.btnShortcutProfile);
         btnShortcutGroup = findViewById(R.id.btnShortcutGroup);
         btnShortcutNotifications = findViewById(R.id.btnShortcutNotifications);
+        ivNotificationBell = findViewById(R.id.ivNotificationBell);
         bottomNavStudent = findViewById(R.id.bottomNavStudent);
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
@@ -50,22 +48,11 @@ public class StudentHomeActivity extends AppCompatActivity {
             }
         });
 
-        btnViewGroupDetails.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentProfileActivity.class));
-        });
-
-        btnShortcutProfile.setOnClickListener(v -> {
-            startActivity(new Intent(this, StudentProfileActivity.class));
-        });
-
-        btnShortcutGroup.setOnClickListener(v -> {
-            Toast.makeText(this, "Lab Group Roster & Members", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, StudentProfileActivity.class));
-        });
-
-        btnShortcutNotifications.setOnClickListener(v -> {
-            Toast.makeText(this, "Notification Center: All updates synced.", Toast.LENGTH_SHORT).show();
-        });
+        btnViewGroupDetails.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        btnShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        btnShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, StudentProfileActivity.class)));
+        btnShortcutNotifications.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+        ivNotificationBell.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
 
         bottomNavStudent.setSelectedItemId(R.id.nav_home);
         bottomNavStudent.setOnItemSelectedListener(item -> {
@@ -76,7 +63,7 @@ public class StudentHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, StudentProfileActivity.class));
                 return true;
             } else if (id == R.id.nav_notifications) {
-                Toast.makeText(this, "Notifications Tab", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, NotificationsActivity.class));
                 return true;
             }
             return false;

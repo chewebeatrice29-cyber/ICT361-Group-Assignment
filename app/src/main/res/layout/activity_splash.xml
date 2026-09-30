@@ -4,8 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/primary_dark"
+    android:background="#1565C0"
     android:padding="24dp">
+
+    <!-- University Header Emblem Badge -->
+    <LinearLayout
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/ic_launcher_background"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:elevation="6dp">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_launcher_foreground"
+            android:contentDescription="University Logo" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +30,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center" />
 
     <TextView
@@ -23,14 +39,14 @@
         android:text="MUConnect Portal"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/color_accent"
-        android:layout_marginBottom="24dp"
+        android:textColor="#E3F2FD"
+        android:layout_marginBottom="28dp"
         android:gravity="center" />
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/color_accent"
+        android:indeterminateTint="#FFFFFF"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>
