@@ -6,6 +6,8 @@
 
     <application
         android:allowBackup="true"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -56,6 +58,10 @@
 
         <activity
             android:name=".ui.activity.StudentProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activity.GroupDetailsActivity"
             android:exported="false" />
 
         <activity

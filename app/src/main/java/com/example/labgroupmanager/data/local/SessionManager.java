@@ -13,6 +13,8 @@ public class SessionManager {
     private static final String KEY_STUDENT_ID = "student_id";
     private static final String KEY_LAST_SYNC_TIME = "last_sync_time";
     private static final String KEY_REMEMBERED_PORTAL = "remembered_portal";
+    private static final String KEY_SERVER_URL = "server_url";
+    public static final String DEFAULT_BASE_URL = "http://10.0.2.2:3000/api/";
 
     private final SharedPreferences prefs;
 
@@ -68,6 +70,17 @@ public class SessionManager {
 
     public String getRememberedPortal() {
         return prefs.getString(KEY_REMEMBERED_PORTAL, null);
+    }
+
+    public String getServerUrl() {
+        return prefs.getString(KEY_SERVER_URL, DEFAULT_BASE_URL);
+    }
+
+    public void setServerUrl(String url) {
+        if (url != null && !url.endsWith("/")) {
+            url = url + "/";
+        }
+        prefs.edit().putString(KEY_SERVER_URL, url).apply();
     }
 
     public boolean isLoggedIn() {

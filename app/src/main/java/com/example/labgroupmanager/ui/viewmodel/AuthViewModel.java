@@ -179,8 +179,14 @@ public class AuthViewModel extends AndroidViewModel {
                         );
 
                         new Handler(Looper.getMainLooper()).post(() -> {
-                            authError.setValue("Login Successful!");
-                            AuthResponse syntheticRes = new AuthResponse();
+                            authError.setValue(null);
+                            AuthResponse syntheticRes = new AuthResponse(
+                                    true,
+                                    "Offline login successful",
+                                    "offline-login-token-" + localAccount.getAccountId(),
+                                    localAccount,
+                                    linkedStudent
+                            );
                             authSuccess.setValue(syntheticRes);
                         });
                     });
@@ -295,9 +301,15 @@ public class AuthViewModel extends AndroidViewModel {
             // 5. Trigger UI success callback on main thread
             new Handler(Looper.getMainLooper()).post(() -> {
                 isLoading.setValue(false);
-                authError.setValue("Offline Account Created! Stored in phone memory and queued for server sync.");
+                authError.setValue(null);
                 // Construct synthetic AuthResponse for UI navigation
-                AuthResponse syntheticRes = new AuthResponse();
+                AuthResponse syntheticRes = new AuthResponse(
+                        true,
+                        "Offline account created",
+                        "offline-token-" + accountId,
+                        account,
+                        student
+                );
                 authSuccess.setValue(syntheticRes);
             });
         });

@@ -54,9 +54,14 @@ public class StudentHomeActivity extends AppCompatActivity {
 
         studentViewModel.getOwnStudentProfile().observe(this, student -> {
             if (student != null) {
-                tvStudentHomeGreeting.setText("Hello, " + student.getStudentName());
-                tvStudentSubDetail.setText(student.getProgramme() + "  •  " + student.getStudentNumber());
-                tvHomeGroupTitle.setText("Group " + student.getLabGroup());
+                String name = student.getStudentName() != null ? student.getStudentName() : "Student";
+                String prog = student.getProgramme() != null ? student.getProgramme() : "N/A";
+                String num = student.getStudentNumber() != null ? student.getStudentNumber() : "";
+                String group = student.getLabGroup() != null ? student.getLabGroup() : "Unassigned";
+
+                tvStudentHomeGreeting.setText("Hello, " + name);
+                tvStudentSubDetail.setText(prog + (num.isEmpty() ? "" : "  •  " + num));
+                tvHomeGroupTitle.setText("Group " + group);
                 tvHomeGroupOccupancy.setText("Active Group Assignment");
             }
         });

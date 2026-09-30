@@ -64,7 +64,13 @@ public class LoginActivity extends AppCompatActivity {
 
         authViewModel.getAuthSuccess().observe(this, response -> {
             if (response != null) {
-                Toast.makeText(LoginActivity.this, "Welcome " + response.getAccount().getUsername() + "!", Toast.LENGTH_SHORT).show();
+                String username = (response.getAccount() != null && response.getAccount().getUsername() != null)
+                        ? response.getAccount().getUsername()
+                        : sessionManager.getUsername();
+                if (username == null || username.trim().isEmpty()) {
+                    username = "User";
+                }
+                Toast.makeText(LoginActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
                 navigateToHome();
             }
         });

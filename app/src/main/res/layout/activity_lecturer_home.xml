@@ -1,143 +1,413 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/background_light">
+    android:background="#F4F6F9">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="76dp">
 
-        <!-- Header Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
+            <!-- 1. Blue Top Header Section -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:background="#1565C0"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:paddingBottom="28dp">
 
-                <TextView
-                    android:id="@+id/tvLecturerHomeGreeting"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Good Morning, Dr. M. Banda"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_dark" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lecturer Portal - MUConnect"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary" />
+                    <!-- Avatar -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="2dp"
+                        android:layout_marginEnd="12dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_launcher_foreground"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Lecturer Avatar" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Lecturer Greeting & Role -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvLecturerHomeGreeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Good Morning, Dr. M. Banda"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lecturer  •  Computer Science"
+                            android:textSize="13sp"
+                            android:textColor="#E3F2FD"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <!-- Header Icons -->
+                    <ImageView
+                        android:id="@+id/ivLecturerNotifBell"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="Notifications"
+                        android:layout_marginEnd="12dp" />
+
+                    <ImageView
+                        android:id="@+id/ivLecturerSettings"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_preferences"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="Settings" />
+                </LinearLayout>
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@android:drawable/ic_menu_agenda"
-                android:contentDescription="Notifications"
-                app:tint="@color/primary" />
-        </LinearLayout>
-
-        <!-- Stats Card -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="3dp"
-            app:cardBackgroundColor="#E8F5E9">
-
+            <!-- Main Content Container overlapping Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="-14dp">
 
+                <!-- 2. Overview Stats Row (Two Blue Stat Cards) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                        app:cardBackgroundColor="#1565C0">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Students"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:textColor="#E3F2FD" />
+
+                            <TextView
+                                android:id="@+id/tvLecturerTotalCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="48"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                        app:cardBackgroundColor="#0D47A1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="My Groups"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:textColor="#E3F2FD" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="#FFFFFF"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- 3. Shortcut Action Grid (4 Grid Cards) -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Active Students"
-                    android:textSize="14sp"
+                    android:text="Lecturer Actions"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_secondary" />
-
-                <TextView
-                    android:id="@+id/tvLecturerTotalCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="48 Students Registered"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_dark"
-                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="8dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <GridLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lab Groups G01 - G04 (Max 15 members each)"
-                    android:textSize="13sp"
-                    android:textColor="@color/color_accent" />
+                    android:columnCount="4"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLecturerShortcutStudents"
+                        android:layout_width="0dp"
+                        android:layout_height="72dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="3dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#E8F5E9"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Students"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="#2E7D32" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLecturerShortcutGroups"
+                        android:layout_width="0dp"
+                        android:layout_height="72dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="3dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#EDE7F6"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Groups"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="#512DA8" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLecturerShortcutSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="72dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="3dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#FFF3E0"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Search"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="#E65100" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLecturerShortcutFilters"
+                        android:layout_width="0dp"
+                        android:layout_height="72dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="3dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#E0F7FA"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Filters"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="#00838F" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </GridLayout>
+
+                <!-- 4. Recent Students Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Recent Students"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/primary_dark" />
+
+                            <TextView
+                                android:id="@+id/tvLecturerViewAllStudents"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View All →"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="#1565C0"
+                                android:clickable="true"
+                                android:focusable="true" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• T001 - Chanda Mulenga (Computer Science • G01)"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="6dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• T002 - Banda Mwila (Software Engineering • G02)"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="6dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="• T003 - Chisanga Phiri (Information Systems • G03)"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 5. Action Buttons -->
+                <Button
+                    android:id="@+id/btnLecturerAddStudent"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="+ Add New Student Record"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btnLecturerShareSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="✉ Share Group Summary Report"
+                    android:textSize="14sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:layout_marginBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btnLecturerBroadcast"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="📢 Send Announcement to All Students"
+                    android:textSize="14sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:layout_marginBottom="16dp" />
 
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
 
-        <!-- Management Action Cards -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lecturer Management"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="12dp" />
+    <!-- 6. Lecturer Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavLecturer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu_lecturer_bottom_nav"
+        app:backgroundTint="#FFFFFF"
+        app:itemIconTint="#1565C0"
+        app:itemTextColor="#1565C0" />
 
-        <Button
-            android:id="@+id/btnLecturerOpenRoster"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:text="Manage Student Roster &amp; Filters"
-            android:textSize="15sp"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnLecturerAddStudent"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:text="Add New Student Record"
-            android:textSize="15sp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnLecturerShareSummary"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:text="Share Group Summary Report"
-            android:textSize="15sp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnLecturerBroadcast"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:text="Send Announcement to All Students"
-            android:textSize="15sp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

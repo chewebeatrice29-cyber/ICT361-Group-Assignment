@@ -53,7 +53,13 @@ public class StudentLoginActivity extends AppCompatActivity {
 
         authViewModel.getAuthSuccess().observe(this, response -> {
             if (response != null) {
-                Toast.makeText(StudentLoginActivity.this, "Welcome " + response.getAccount().getUsername() + "!", Toast.LENGTH_SHORT).show();
+                String username = (response.getAccount() != null && response.getAccount().getUsername() != null)
+                        ? response.getAccount().getUsername()
+                        : sessionManager.getUsername();
+                if (username == null || username.trim().isEmpty()) {
+                    username = "Student";
+                }
+                Toast.makeText(StudentLoginActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(StudentLoginActivity.this, StudentHomeActivity.class));
                 finish();
             }

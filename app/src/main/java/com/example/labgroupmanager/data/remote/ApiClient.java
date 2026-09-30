@@ -15,13 +15,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    // Default base URL for Android Emulator pointing to local Node.js Express server
-    private static final String BASE_URL = "http://10.0.2.2:3000/api/";
     private static ApiService instance;
+    private static String currentBaseUrl;
 
     public static synchronized ApiService getService(Context context) {
-        if (instance == null) {
-            SessionManager sessionManager = new SessionManager(context);
+        SessionManager sessionManager = new SessionManager(context.getApplicationContext());
+        String baseUrl = sessionManager.getServerUrl();
+        if (baseUrl == null || baseUrl.trim().isEmpty()) {
+            baseUrl = SessionManager.DEFAULT_BASE_URL;
+        }
+        if (!baseUrl.endsWith("/")) {
+            baseUrl = baseUrl + "/";
+        }
+
+        if (instance == null || !baseUrl.equals(currentBaseUrl)) {
+            currentBaseUrl = baseUrl;
 
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -42,13 +50,13 @@ public class ApiClient {
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(authInterceptor)
                     .addInterceptor(loggingInterceptor)
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
+                    .connectTimeout(15, TimeUnit.SECONDS)
+                    .readTimeout(15, TimeUnit.SECONDS)
+                    .writeTimeout(15, TimeUnit.SECONDS)
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(currentBaseUrl)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -56,5 +64,21 @@ public class ApiClient {
             instance = retrofit.create(ApiService.class);
         }
         return instance;
+    }
+
+    public static synchronized void resetInstance() {
+        instance = null;
+        currentBaseUrl = null;
+    }
+
+    public static String getBaseUrl(Context context) {
+        SessionManager sessionManager = new SessionManager(context.getApplicationContext());
+        return sessionManager.getServerUrl();
+    }
+
+    public static void setBaseUrl(Context context, String newUrl) {
+        SessionManager sessionManager = new SessionManager(context.getApplicationContext());
+        sessionManager.setServerUrl(newUrl);
+        resetInstance();
     }
 }
