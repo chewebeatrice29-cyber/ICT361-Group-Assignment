@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6200EE"
+        app:navigationIcon=" @drawable/ic_arrow_back"
+        app:navigationIconTint="#FFFFFF"
+        app:title="Verify Code"
+        app:titleTextColor="#FFFFFF" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@android:drawable/ic_lock_idle_lock"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter Verification Code"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/instructionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We sent a 6-digit code to your email"
+                android:textSize="14sp"
+                android:textColor="#555555"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <EditText
+                android:id="@+id/hiddenOtpInput"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:inputType="number"
+                android:maxLength="6"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/transparent"
+                android:cursorVisible="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView android:id="@+id/box1" android:layout_width="45dp" android:layout_height="55dp" android:background=" @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="4dp"/>
+                <TextView android:id="@+id/box2" android:layout_width="45dp" android:layout_height="55dp" android:background=" @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="4dp"/>
+                <TextView android:id="@+id/box3" android:layout_width="45dp" android:layout_height="55dp" android:background= " @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="12dp"/>
+                <TextView android:id="@+id/box4" android:layout_width="45dp" android:layout_height="55dp" android:background=" @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="4dp"/>
+                <TextView android:id="@+id/box5" android:layout_width="45dp" android:layout_height="55dp" android:background=" @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" android:layout_marginEnd="4dp"/>
+                <TextView android:id="@+id/box6" android:layout_width="45dp" android:layout_height="55dp" android:background=" @drawable/otp_box_background" android:gravity="center" android:textSize="22sp" android:textStyle="bold" android:textColor="#000000" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚠ Invalid code. Try again."
+                android:textColor="#D32F2F"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="VERIFY CODE"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#1976D2"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/resendCodeLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resend Code (30s)"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:gravity="center"
+                android:padding="8dp"
+                android:enabled="false" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
