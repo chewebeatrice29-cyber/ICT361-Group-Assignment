@@ -19,6 +19,7 @@ import com.example.labgroupmanager.R;
 import com.example.labgroupmanager.data.local.SessionManager;
 import com.example.labgroupmanager.data.model.Student;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class StudentProfileActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     private TextInputEditText etEditName;
     private Spinner spinnerEditProgramme, spinnerTargetGroup;
     private Button btnSaveProfile, btnSubmitGroupRequest;
+    private BottomNavigationView bottomNavProfile;
 
     private StudentViewModel studentViewModel;
     private SessionManager sessionManager;
@@ -51,6 +53,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         spinnerTargetGroup = findViewById(R.id.spinnerTargetGroup);
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
         btnSubmitGroupRequest = findViewById(R.id.btnSubmitGroupRequest);
+        bottomNavProfile = findViewById(R.id.bottomNavProfile);
 
         ArrayAdapter<String> progAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"CS", "IT", "DS"});
         progAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,6 +110,26 @@ public class StudentProfileActivity extends AppCompatActivity {
                 studentViewModel.requestGroupChange(currentStudent.getStudentId(), target);
             }
         });
+
+        if (bottomNavProfile != null) {
+            bottomNavProfile.setSelectedItemId(R.id.nav_profile);
+            bottomNavProfile.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    Intent intent = new Intent(this, StudentHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    return true;
+                } else if (id == R.id.nav_group) {
+                    startActivity(new Intent(this, GroupDetailsActivity.class));
+                    return true;
+                } else if (id == R.id.nav_notifications) {
+                    startActivity(new Intent(this, NotificationsActivity.class));
+                    return true;
+                }
+                return true;
+            });
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.labgroupmanager.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -11,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.labgroupmanager.R;
 import com.example.labgroupmanager.ui.adapter.StudentAdapter;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GroupDetailsActivity extends AppCompatActivity {
 
     private TextView tvGroupDetailsTitle, tvGroupDetailsOccupancy;
     private RecyclerView rvGroupMembers;
+    private BottomNavigationView bottomNavGroupDetails;
 
     private StudentViewModel studentViewModel;
     private StudentAdapter studentAdapter;
@@ -28,6 +31,7 @@ public class GroupDetailsActivity extends AppCompatActivity {
         tvGroupDetailsTitle = findViewById(R.id.tvGroupDetailsTitle);
         tvGroupDetailsOccupancy = findViewById(R.id.tvGroupDetailsOccupancy);
         rvGroupMembers = findViewById(R.id.rvGroupMembers);
+        bottomNavGroupDetails = findViewById(R.id.bottomNavGroupDetails);
 
         rvGroupMembers.setLayoutManager(new LinearLayoutManager(this));
         studentAdapter = new StudentAdapter(student -> {
@@ -51,5 +55,25 @@ public class GroupDetailsActivity extends AppCompatActivity {
                 tvGroupDetailsOccupancy.setText(students.size() + " / 15 active members");
             }
         });
+
+        if (bottomNavGroupDetails != null) {
+            bottomNavGroupDetails.setSelectedItemId(R.id.nav_group);
+            bottomNavGroupDetails.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    Intent intent = new Intent(this, StudentHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    return true;
+                } else if (id == R.id.nav_profile) {
+                    startActivity(new Intent(this, SettingsActivity.class));
+                    return true;
+                } else if (id == R.id.nav_notifications) {
+                    startActivity(new Intent(this, NotificationsActivity.class));
+                    return true;
+                }
+                return true;
+            });
+        }
     }
 }

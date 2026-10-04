@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chatBubbleContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardChatBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="280dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#1565C0">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/tvChatSender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dr. M. Banda (Lecturer)"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#E3F2FD"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:id="@+id/tvChatContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello! Please ensure your ICT361 lab submission is ready."
+                android:textSize="14sp"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvChatTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="10:24 AM"
+                android:textSize="10sp"
+                android:textColor="#E3F2FD"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

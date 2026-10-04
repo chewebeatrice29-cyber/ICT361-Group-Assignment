@@ -389,7 +389,17 @@
                     android:id="@+id/btnLecturerBroadcast"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="📢 Send Announcement to All Students"
+                    android:text="📢 Broadcast Announcement to Students"
+                    android:textSize="14sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:layout_marginBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btnLecturerOpenChat"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="💬 Open In-App Chat &amp; Messaging"
                     android:textSize="14sp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     app:strokeColor="#1565C0"

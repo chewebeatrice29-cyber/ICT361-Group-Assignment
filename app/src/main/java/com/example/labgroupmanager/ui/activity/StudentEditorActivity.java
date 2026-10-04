@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +18,15 @@ import com.example.labgroupmanager.data.model.Student;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentEditorActivity extends AppCompatActivity {
 
     private TextView tvEditorTitle;
     private TextInputEditText etEditorStudentNumber, etEditorStudentName;
     private Spinner spinnerEditorProgramme, spinnerEditorGroup;
+    private CheckBox cbCourseCS, cbCourseSE, cbCourseIS, cbCourseDB, cbCourseWT, cbCourseMC;
     private Button btnEditorSave, btnEditorDelete;
 
     private StudentViewModel studentViewModel;
@@ -38,6 +43,14 @@ public class StudentEditorActivity extends AppCompatActivity {
         etEditorStudentName = findViewById(R.id.etEditorStudentName);
         spinnerEditorProgramme = findViewById(R.id.spinnerEditorProgramme);
         spinnerEditorGroup = findViewById(R.id.spinnerEditorGroup);
+
+        cbCourseCS = findViewById(R.id.cbCourseCS);
+        cbCourseSE = findViewById(R.id.cbCourseSE);
+        cbCourseIS = findViewById(R.id.cbCourseIS);
+        cbCourseDB = findViewById(R.id.cbCourseDB);
+        cbCourseWT = findViewById(R.id.cbCourseWT);
+        cbCourseMC = findViewById(R.id.cbCourseMC);
+
         btnEditorSave = findViewById(R.id.btnEditorSave);
         btnEditorDelete = findViewById(R.id.btnEditorDelete);
 
@@ -64,6 +77,14 @@ public class StudentEditorActivity extends AppCompatActivity {
                     etEditorStudentName.setText(student.getStudentName());
                     selectSpinnerValue(spinnerEditorProgramme, student.getProgramme());
                     selectSpinnerValue(spinnerEditorGroup, student.getLabGroup());
+
+                    String courses = student.getCourses();
+                    cbCourseCS.setChecked(courses.contains("CS") || courses.contains("Computer Science"));
+                    cbCourseSE.setChecked(courses.contains("SE") || courses.contains("Software"));
+                    cbCourseIS.setChecked(courses.contains("IS") || courses.contains("Information"));
+                    cbCourseDB.setChecked(courses.contains("DB") || courses.contains("Database"));
+                    cbCourseWT.setChecked(courses.contains("WT") || courses.contains("Web"));
+                    cbCourseMC.setChecked(courses.contains("MC") || courses.contains("Mobile"));
                 }
             });
         }
@@ -102,6 +123,15 @@ public class StudentEditorActivity extends AppCompatActivity {
             return;
         }
 
+        List<String> selectedCourses = new ArrayList<>();
+        if (cbCourseCS.isChecked()) selectedCourses.add("CS");
+        if (cbCourseSE.isChecked()) selectedCourses.add("SE");
+        if (cbCourseIS.isChecked()) selectedCourses.add("IS");
+        if (cbCourseDB.isChecked()) selectedCourses.add("DB");
+        if (cbCourseWT.isChecked()) selectedCourses.add("WT");
+        if (cbCourseMC.isChecked()) selectedCourses.add("MC");
+        String courseString = String.join(", ", selectedCourses);
+
         if (editingStudent == null) {
             // Create New
             studentViewModel.createStudentByLecturer(number, name, programme, group);
@@ -111,14 +141,15 @@ public class StudentEditorActivity extends AppCompatActivity {
             editingStudent.setStudentName(name);
             editingStudent.setProgramme(programme);
             editingStudent.setLabGroup(group);
+            editingStudent.setCourses(courseString);
             studentViewModel.saveStudentProfile(editingStudent);
         }
     }
 
     private void showDeleteConfirmationDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirm Deletion")
-                .setMessage("Are you sure you want to delete this student record? This will soft-delete the student and release their lab group seat while preserving the student number.")
+                .setTitle("Delete Student")
+                .setMessage("Are you sure you want to delete " + (editingStudent != null ? editingStudent.getStudentName() : "this student") + "? This action cannot be undone. The record will be hidden (soft delete).")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     if (studentId != null) {
                         studentViewModel.deleteStudent(studentId);

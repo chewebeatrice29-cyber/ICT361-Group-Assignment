@@ -73,10 +73,10 @@ public class StudentHomeActivity extends AppCompatActivity {
 
         if (cardShortcutProfile != null) cardShortcutProfile.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
         if (cardShortcutGroup != null) cardShortcutGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupDetailsActivity.class)));
-        if (cardShortcutMessages != null) cardShortcutMessages.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+        if (cardShortcutMessages != null) cardShortcutMessages.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
         if (cardShortcutNotifs != null) cardShortcutNotifs.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
         if (cardShortcutSchedule != null) cardShortcutSchedule.setOnClickListener(v -> startActivity(new Intent(this, ScheduleActivity.class)));
-        if (cardShortcutCourses != null) cardShortcutCourses.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
+        if (cardShortcutCourses != null) cardShortcutCourses.setOnClickListener(v -> startActivity(new Intent(this, AvailableCoursesActivity.class)));
 
         if (bottomNavStudent != null) {
             bottomNavStudent.setSelectedItemId(R.id.nav_home);

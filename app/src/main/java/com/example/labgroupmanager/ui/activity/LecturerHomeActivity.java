@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,7 +25,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
     private TextView tvLecturerHomeGreeting, tvLecturerTotalCount, tvLecturerViewAllStudents;
     private ImageView ivLecturerNotifBell, ivLecturerSettings;
     private MaterialCardView cardLecturerShortcutStudents, cardLecturerShortcutGroups, cardLecturerShortcutSearch, cardLecturerShortcutFilters;
-    private Button btnLecturerAddStudent, btnLecturerShareSummary, btnLecturerBroadcast;
+    private Button btnLecturerAddStudent, btnLecturerShareSummary, btnLecturerBroadcast, btnLecturerOpenChat;
     private BottomNavigationView bottomNavLecturer;
 
     private StudentViewModel studentViewModel;
@@ -52,6 +53,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
         btnLecturerAddStudent = findViewById(R.id.btnLecturerAddStudent);
         btnLecturerShareSummary = findViewById(R.id.btnLecturerShareSummary);
         btnLecturerBroadcast = findViewById(R.id.btnLecturerBroadcast);
+        btnLecturerOpenChat = findViewById(R.id.btnLecturerOpenChat);
 
         bottomNavLecturer = findViewById(R.id.bottomNavLecturer);
 
@@ -79,7 +81,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
         View.OnClickListener openRosterListener = v -> startActivity(new Intent(this, LecturerRosterActivity.class));
 
         if (cardLecturerShortcutStudents != null) cardLecturerShortcutStudents.setOnClickListener(openRosterListener);
-        if (cardLecturerShortcutGroups != null) cardLecturerShortcutGroups.setOnClickListener(openRosterListener);
+        if (cardLecturerShortcutGroups != null) cardLecturerShortcutGroups.setOnClickListener(v -> startActivity(new Intent(this, GroupManagementActivity.class)));
         if (cardLecturerShortcutSearch != null) cardLecturerShortcutSearch.setOnClickListener(openRosterListener);
         if (cardLecturerShortcutFilters != null) cardLecturerShortcutFilters.setOnClickListener(openRosterListener);
         if (tvLecturerViewAllStudents != null) tvLecturerViewAllStudents.setOnClickListener(openRosterListener);
@@ -99,14 +101,21 @@ public class LecturerHomeActivity extends AppCompatActivity {
             btnLecturerBroadcast.setOnClickListener(v -> startActivity(new Intent(this, SendMessageActivity.class)));
         }
 
+        if (btnLecturerOpenChat != null) {
+            btnLecturerOpenChat.setOnClickListener(v -> startActivity(new Intent(this, ChatActivity.class)));
+        }
+
         if (bottomNavLecturer != null) {
             bottomNavLecturer.setSelectedItemId(R.id.nav_lecturer_home);
             bottomNavLecturer.setOnItemSelectedListener(item -> {
                 int id = item.getItemId();
                 if (id == R.id.nav_lecturer_home) {
                     return true;
-                } else if (id == R.id.nav_lecturer_students || id == R.id.nav_lecturer_groups) {
+                } else if (id == R.id.nav_lecturer_students) {
                     startActivity(new Intent(this, LecturerRosterActivity.class));
+                    return true;
+                } else if (id == R.id.nav_lecturer_groups) {
+                    startActivity(new Intent(this, GroupManagementActivity.class));
                     return true;
                 } else if (id == R.id.nav_lecturer_notifs) {
                     startActivity(new Intent(this, NotificationsActivity.class));

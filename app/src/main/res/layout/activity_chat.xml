@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <!-- Top Chat Header Bar -->
+    <LinearLayout
+        android:id="@+id/chatHeaderBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1565C0"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            android:layout_marginEnd="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="centerCrop"
+                android:contentDescription="Chat Contact Avatar" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvChatHeaderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MUConnect Live Chat"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvChatHeaderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Online • Instant Messaging"
+                android:textSize="12sp"
+                android:textColor="#E3F2FD" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Chat Message Feed -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChatMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/chatHeaderBar"
+        android:layout_above="@id/chatInputBar"
+        android:padding="12dp"
+        android:clipToPadding="false" />
+
+    <!-- Bottom Input & Send Bar -->
+    <LinearLayout
+        android:id="@+id/chatInputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:elevation="8dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="#E3F2FD"
+            app:boxStrokeColor="#1565C0"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etChatMessageInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type a message..."
+                android:textColor="#0D233A"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSendChatMessage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:icon="@android:drawable/ic_menu_send"
+            app:iconTint="#FFFFFF"
+            app:iconGravity="textStart"
+            android:padding="0dp"
+            android:backgroundTint="#1565C0"
+            app:cornerRadius="25dp" />
+    </LinearLayout>
+
+</RelativeLayout>

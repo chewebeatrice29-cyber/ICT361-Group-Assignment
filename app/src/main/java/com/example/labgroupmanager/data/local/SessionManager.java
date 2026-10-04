@@ -14,7 +14,11 @@ public class SessionManager {
     private static final String KEY_LAST_SYNC_TIME = "last_sync_time";
     private static final String KEY_REMEMBERED_PORTAL = "remembered_portal";
     private static final String KEY_SERVER_URL = "server_url";
+    private static final String KEY_BACKGROUND_TIME = "background_time";
     public static final String DEFAULT_BASE_URL = "http://10.0.2.2:3000/api/";
+
+    // 5 minutes in milliseconds (5 * 60 * 1000 = 300,000 ms)
+    private static final long SESSION_TIMEOUT_MS = 5 * 60 * 1000;
 
     private final SharedPreferences prefs;
 
@@ -29,6 +33,7 @@ public class SessionManager {
                 .putString(KEY_USERNAME, username)
                 .putString(KEY_USER_ROLE, role)
                 .putString(KEY_STUDENT_ID, studentId)
+                .putLong(KEY_BACKGROUND_TIME, 0L)
                 .apply();
     }
 
@@ -83,6 +88,17 @@ public class SessionManager {
         prefs.edit().putString(KEY_SERVER_URL, url).apply();
     }
 
+    public void recordBackgroundTime() {
+        prefs.edit().putLong(KEY_BACKGROUND_TIME, System.currentTimeMillis()).apply();
+    }
+
+    public boolean isSessionExpiredAfterBackground() {
+        long bgTime = prefs.getLong(KEY_BACKGROUND_TIME, 0L);
+        if (bgTime == 0L) return false;
+        long elapsed = System.currentTimeMillis() - bgTime;
+        return elapsed > SESSION_TIMEOUT_MS;
+    }
+
     public boolean isLoggedIn() {
         return getAuthToken() != null && getAccountId() != null;
     }
@@ -92,6 +108,13 @@ public class SessionManager {
     }
 
     public void clearSession() {
-        prefs.edit().clear().apply();
+        prefs.edit()
+                .remove(KEY_AUTH_TOKEN)
+                .remove(KEY_ACCOUNT_ID)
+                .remove(KEY_USERNAME)
+                .remove(KEY_USER_ROLE)
+                .remove(KEY_STUDENT_ID)
+                .remove(KEY_BACKGROUND_TIME)
+                .apply();
     }
 }

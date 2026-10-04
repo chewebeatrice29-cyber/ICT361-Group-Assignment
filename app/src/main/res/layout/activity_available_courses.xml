@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available University Courses"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select courses to request lecturer approval for registration."
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Course List Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Computer Science &amp; IT Department"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"
+                    android:layout_marginBottom="12dp" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailICT361"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ICT361 - Mobile Application Development"
+                    android:checked="true"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailCS311"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS311 - Data Structures &amp; Algorithms"
+                    android:checked="true" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailCS321"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS321 - Software Engineering &amp; Architecture"
+                    android:checked="true" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailCS331"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS331 - Database Systems &amp; Management" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailIT311"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IT311 - Web Technologies &amp; E-Commerce" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailIT321"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IT321 - Information Systems Security &amp; Audit" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailDS311"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DS311 - Principles of Data Science &amp; Big Analytics" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailDS321"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DS321 - Machine Learning &amp; Statistical Modeling" />
+
+                <CheckBox
+                    android:id="@+id/cbAvailBMG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMG - Principles of Management" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Status & Submit Section -->
+        <TextView
+            android:id="@+id/tvCourseApprovalStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: Courses Approved by Lecturer"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnSubmitCourseRequest"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Submit Course Selection for Lecturer Approval"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:backgroundTint="#1565C0"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>
