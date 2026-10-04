@@ -36,6 +36,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation(libs.activity.ktx)
+    implementation(libs.mediarouter)
     implementation(libs.recyclerview)
     implementation(libs.swiperefreshlayout)
 

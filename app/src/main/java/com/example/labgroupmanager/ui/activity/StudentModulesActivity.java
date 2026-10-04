@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.labgroupmanager.R;
 import com.example.labgroupmanager.data.local.AppDatabase;
 import com.example.labgroupmanager.data.model.ModuleItem;
+import com.example.labgroupmanager.ui.BottomNavHelper;
 import com.example.labgroupmanager.ui.adapter.ModuleAdapter;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class StudentModulesActivity extends AppCompatActivity {
         moduleAdapter = new ModuleAdapter(moduleList);
         rvStudentModules.setAdapter(moduleAdapter);
 
+        BottomNavHelper.setupBottomNav(this, 0);
         loadModules();
     }
 

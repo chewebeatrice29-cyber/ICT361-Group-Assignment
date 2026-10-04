@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1080dp"
+    android:height="1920dp"
+    android:viewportWidth="1080"
+    android:viewportHeight="1920">
+
+    <!-- Sky Gradient Background -->
+    <path
+        android:pathData="M0,0h1080v1920h-1080z"
+        android:fillColor="#E3F2FD" />
+
+    <!-- University Main Academic Building Pillar 1 -->
+    <path
+        android:pathData="M100,600 h120 v1320 h-120 z"
+        android:fillColor="#1565C0"
+        android:fillAlpha="0.12" />
+
+    <!-- University Main Academic Building Pillar 2 -->
+    <path
+        android:pathData="M260,520 h140 v1400 h-140 z"
+        android:fillColor="#0D47A1"
+        android:fillAlpha="0.15" />
+
+    <!-- University Central Administration Dome / Arch Structure -->
+    <path
+        android:pathData="M440,400 Q540,280 640,400 v1520 h-200 z"
+        android:fillColor="#1565C0"
+        android:fillAlpha="0.18" />
+
+    <!-- University Main Academic Building Pillar 3 -->
+    <path
+        android:pathData="M680,520 h140 v1400 h-140 z"
+        android:fillColor="#0D47A1"
+        android:fillAlpha="0.15" />
+
+    <!-- University Main Academic Building Pillar 4 -->
+    <path
+        android:pathData="M860,600 h120 v1320 h-120 z"
+        android:fillColor="#1565C0"
+        android:fillAlpha="0.12" />
+
+    <!-- Building Windows / Grid Accents -->
+    <path
+        android:pathData="M120,680 h80 v60 h-80 z M120,800 h80 v60 h-80 z M120,920 h80 v60 h-80 z
+                          M290,600 h80 v70 h-80 z M290,720 h80 v70 h-80 z M290,840 h80 v70 h-80 z
+                          M480,520 h120 v80 h-120 z M480,660 h120 v80 h-120 z M480,800 h120 v80 h-120 z
+                          M710,600 h80 v70 h-80 z M710,720 h80 v70 h-80 z M710,840 h80 v70 h-80 z
+                          M880,680 h80 v60 h-80 z M880,800 h80 v60 h-80 z M880,920 h80 v60 h-80 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.25" />
+
+    <!-- Campus Lawn Foreground Layer -->
+    <path
+        android:pathData="M0,1650 Q540,1580 1080,1650 v270 h-1080 z"
+        android:fillColor="#1565C0"
+        android:fillAlpha="0.08" />
+
+</vector>

@@ -105,6 +105,10 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".ui.activity.StudentSubmissionsListActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.activity.GradingActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />

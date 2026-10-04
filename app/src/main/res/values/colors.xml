@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#1565C0</color>
-    <color name="primary_dark">#0D47A1</color>
-    <color name="color_accent">#42A5F5</color>
-    <color name="background_light">#F4F6F9</color>
+    <!-- Soft, Eye-Pleasing Low-Contrast Palette -->
+    <color name="primary">#1E6091</color>
+    <color name="primary_dark">#184E77</color>
+    <color name="color_accent">#52B69A</color>
+    <color name="background_light">#F8FAFC</color>
     <color name="card_background">#FFFFFF</color>
-    <color name="text_primary">#0D233A</color>
-    <color name="text_secondary">#4A5568</color>
-    <color name="status_pending">#E65100</color>
-    <color name="status_synced">#1565C0</color>
-    <color name="status_failed">#C62828</color>
-    <color name="text_field_bg">#E3F2FD</color> <!-- Soft Ice Blue for high visibility text fields -->
-    <color name="text_field_stroke">#1565C0</color>
+
+    <!-- Muted Slate Text Colors for Low Contrast -->
+    <color name="text_primary">#334155</color> <!-- Muted Slate Charcoal -->
+    <color name="text_secondary">#64748B</color> <!-- Soft Slate Gray -->
+
+    <!-- Status Colors -->
+    <color name="status_pending">#D97706</color>
+    <color name="status_synced">#1E6091</color>
+    <color name="status_failed">#DC2626</color>
+
+    <!-- Soft, Low-Contrast Text Fields -->
+    <color name="text_field_bg">#F1F5F9</color> <!-- Gentle Soft Gray-Blue Tint -->
+    <color name="text_field_stroke">#CBD5E1</color> <!-- Subtle Soft Border -->
+    <color name="text_field_input">#334155</color> <!-- Smooth Muted Charcoal Text -->
+    <color name="text_field_hint">#64748B</color> <!-- Soft Neutral Slate Hint -->
 </resources>

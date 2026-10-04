@@ -177,7 +177,27 @@
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
-                <!-- 3. Shortcut Action Grid (4 Grid Cards) -->
+                <!-- Search Text Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@color/text_field_bg"
+                    app:boxStrokeColor="@color/primary"
+                    app:startIconDrawable="@android:drawable/ic_menu_search"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLecturerSearchQuery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Search students by name or number..."
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 3. Shortcut Action Grid -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -190,7 +210,7 @@
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="4"
+                    android:columnCount="3"
                     android:layout_marginBottom="16dp">
 
                     <com.google.android.material.card.MaterialCardView
@@ -208,7 +228,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:padding="4dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_nav_students"
+                                app:tint="#2E7D32"
+                                android:layout_marginBottom="2dp"
+                                android:contentDescription="Students Icon" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -234,7 +262,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:padding="4dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_nav_groups"
+                                app:tint="#512DA8"
+                                android:layout_marginBottom="2dp"
+                                android:contentDescription="Groups Icon" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -246,54 +282,36 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardLecturerShortcutSearch"
+                        android:id="@+id/cardLecturerShortcutTimetable"
                         android:layout_width="0dp"
                         android:layout_height="72dp"
                         android:layout_columnWeight="1"
                         android:layout_margin="3dp"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="2dp"
-                        app:cardBackgroundColor="#FFF3E0"
+                        app:cardBackgroundColor="#E3F2FD"
                         android:clickable="true"
                         android:focusable="true">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:padding="4dp">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@android:drawable/ic_menu_day"
+                                app:tint="#1565C0"
+                                android:layout_marginBottom="2dp"
+                                android:contentDescription="Timetable Icon" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Search"
+                                android:text="Timetable"
                                 android:textSize="11sp"
                                 android:textStyle="bold"
-                                android:textColor="#E65100" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardLecturerShortcutFilters"
-                        android:layout_width="0dp"
-                        android:layout_height="72dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="3dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="#E0F7FA"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Filters"
-                                android:textSize="11sp"
-                                android:textStyle="bold"
-                                android:textColor="#00838F" />
+                                android:textColor="#1565C0" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </GridLayout>

@@ -1,13 +1,16 @@
 package com.example.labgroupmanager.ui.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,6 +20,7 @@ import com.example.labgroupmanager.data.model.GroupSummary;
 import com.example.labgroupmanager.ui.viewmodel.StudentViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Map;
 
@@ -24,7 +28,8 @@ public class LecturerHomeActivity extends AppCompatActivity {
 
     private TextView tvLecturerHomeGreeting, tvLecturerTotalCount, tvLecturerViewAllStudents;
     private ImageView ivLecturerNotifBell, ivLecturerSettings;
-    private MaterialCardView cardLecturerShortcutStudents, cardLecturerShortcutGroups, cardLecturerShortcutSearch, cardLecturerShortcutFilters;
+    private MaterialCardView cardLecturerShortcutStudents, cardLecturerShortcutGroups, cardLecturerShortcutTimetable;
+    private TextInputEditText etLecturerSearchQuery;
     private Button btnLecturerAddStudent, btnLecturerShareSummary, btnLecturerBroadcast, btnLecturerOpenChat;
     private BottomNavigationView bottomNavLecturer;
 
@@ -47,8 +52,8 @@ public class LecturerHomeActivity extends AppCompatActivity {
 
         cardLecturerShortcutStudents = findViewById(R.id.cardLecturerShortcutStudents);
         cardLecturerShortcutGroups = findViewById(R.id.cardLecturerShortcutGroups);
-        cardLecturerShortcutSearch = findViewById(R.id.cardLecturerShortcutSearch);
-        cardLecturerShortcutFilters = findViewById(R.id.cardLecturerShortcutFilters);
+        cardLecturerShortcutTimetable = findViewById(R.id.cardLecturerShortcutTimetable);
+        etLecturerSearchQuery = findViewById(R.id.etLecturerSearchQuery);
 
         btnLecturerAddStudent = findViewById(R.id.btnLecturerAddStudent);
         btnLecturerShareSummary = findViewById(R.id.btnLecturerShareSummary);
@@ -77,13 +82,29 @@ public class LecturerHomeActivity extends AppCompatActivity {
             }
         });
 
+        // Search query text watcher
+        if (etLecturerSearchQuery != null) {
+            etLecturerSearchQuery.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String query = s != null ? s.toString().trim() : "";
+                    studentViewModel.updateFilter("All", "All", query);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+        }
+
         // Click listeners
         View.OnClickListener openRosterListener = v -> startActivity(new Intent(this, LecturerRosterActivity.class));
 
         if (cardLecturerShortcutStudents != null) cardLecturerShortcutStudents.setOnClickListener(openRosterListener);
         if (cardLecturerShortcutGroups != null) cardLecturerShortcutGroups.setOnClickListener(v -> startActivity(new Intent(this, GroupManagementActivity.class)));
-        if (cardLecturerShortcutSearch != null) cardLecturerShortcutSearch.setOnClickListener(openRosterListener);
-        if (cardLecturerShortcutFilters != null) cardLecturerShortcutFilters.setOnClickListener(openRosterListener);
+        if (cardLecturerShortcutTimetable != null) cardLecturerShortcutTimetable.setOnClickListener(v -> startActivity(new Intent(this, LecturerTimetableActivity.class)));
         if (tvLecturerViewAllStudents != null) tvLecturerViewAllStudents.setOnClickListener(openRosterListener);
 
         if (ivLecturerNotifBell != null) ivLecturerNotifBell.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
@@ -127,6 +148,43 @@ public class LecturerHomeActivity extends AppCompatActivity {
                 return false;
             });
         }
+
+        // Double back press callback on home screen
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            private long backPressedTime = 0;
+
+            @Override
+            public void handleOnBackPressed() {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - backPressedTime < 2000) {
+                    // Double back press -> Logout and Close App
+                    sessionManager.clearSession();
+                    finishAffinity();
+                } else {
+                    backPressedTime = currentTime;
+                    showExitPromptDialog();
+                }
+            }
+        });
+    }
+
+    private void showExitPromptDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Logout or Exit Application?")
+                .setMessage("Press back again to logout & close app, or choose an option below:")
+                .setPositiveButton("Logout & Close App", (dialog, which) -> {
+                    sessionManager.clearSession();
+                    finishAffinity();
+                })
+                .setNeutralButton("Logout", (dialog, which) -> {
+                    sessionManager.clearSession();
+                    Intent intent = new Intent(LecturerHomeActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     private void shareGroupSummary(GroupSummary summary) {

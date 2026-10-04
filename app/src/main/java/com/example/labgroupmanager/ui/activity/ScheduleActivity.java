@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.labgroupmanager.R;
 import com.example.labgroupmanager.data.local.AppDatabase;
 import com.example.labgroupmanager.data.model.ScheduleItem;
+import com.example.labgroupmanager.ui.BottomNavHelper;
 import com.example.labgroupmanager.ui.adapter.ScheduleAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 
@@ -26,6 +29,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
     private RecyclerView rvScheduleItems;
     private Button btnAddScheduleActivity;
+    private CalendarView calendarViewSchedule;
     private ScheduleAdapter scheduleAdapter;
     private final List<ScheduleItem> itemList = new ArrayList<>();
 
@@ -36,6 +40,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
         rvScheduleItems = findViewById(R.id.rvScheduleItems);
         btnAddScheduleActivity = findViewById(R.id.btnAddScheduleActivity);
+        calendarViewSchedule = findViewById(R.id.calendarViewSchedule);
 
         rvScheduleItems.setLayoutManager(new LinearLayoutManager(this));
         scheduleAdapter = new ScheduleAdapter(itemList, item -> deleteItem(item));
@@ -43,6 +48,14 @@ public class ScheduleActivity extends AppCompatActivity {
 
         btnAddScheduleActivity.setOnClickListener(v -> showAddActivityDialog());
 
+        if (calendarViewSchedule != null) {
+            calendarViewSchedule.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+                String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, (month + 1), year);
+                Toast.makeText(this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        BottomNavHelper.setupBottomNav(this, 0);
         loadScheduleData();
     }
 
@@ -109,7 +122,7 @@ public class ScheduleActivity extends AppCompatActivity {
             Executors.newSingleThreadExecutor().execute(() -> {
                 AppDatabase.getInstance(getApplicationContext()).scheduleDao().insertItem(newItem);
                 runOnUiThread(() -> {
-                    Toast.makeText(ScheduleActivity.this, "Activity added to schedule!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScheduleActivity.this, "Activity added to schedule!", Toast.LENGTH_LONG).show();
                     loadScheduleData();
                 });
             });

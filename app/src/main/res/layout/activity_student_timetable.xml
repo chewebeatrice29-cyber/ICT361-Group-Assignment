@@ -1,41 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_light"
-    android:padding="16dp">
+    android:background="@color/background_light">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Official University Timetable"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/primary_dark"
-        android:layout_marginBottom="4dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Monday – Friday (5 Daily 2-Hour Slots • 07:00 to 19:00)"
-        android:textSize="13sp"
-        android:textColor="@color/text_secondary"
-        android:layout_marginBottom="12dp" />
-
-    <!-- Day Selector Spinner -->
-    <Spinner
-        android:id="@+id/spinnerTtStudentDay"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/text_field_bg"
-        android:layout_marginBottom="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvStudentTtSlots"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false" />
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:paddingBottom="60dp">
 
-</LinearLayout>
+        <!-- Edurole Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MULUNGUSHI UNIVERSITY INFORMATION SYSTEM"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fulltime Timetable"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Timetable Category Tabs -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:text="Fulltime Timetable"
+                    android:textSize="12sp"
+                    android:backgroundTint="#1565C0"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:text="Distance Timetable"
+                    android:textSize="12sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:textColor="#1565C0"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:text="Postgraduate"
+                    android:textSize="12sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:textColor="#1565C0"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:text="Online"
+                    android:textSize="12sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#1565C0"
+                    android:textColor="#1565C0" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Programme Selector Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programme Name:"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"
+                    android:layout_marginBottom="4dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerEduroleProgram"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@color/text_field_bg"
+                    android:layout_marginBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btnShowEduroleTimetable"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="Show Timetable"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#1565C0"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Day Filter Spinner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter Day:"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_dark"
+                android:layout_marginEnd="8dp" />
+
+            <Spinner
+                android:id="@+id/spinnerTtDayFilter"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="@color/text_field_bg" />
+        </LinearLayout>
+
+        <!-- Timetable Slots List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStudentTtSlots"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavUniversal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu_student_bottom_nav"
+        app:backgroundTint="#FFFFFF"
+        app:itemIconTint="#1565C0"
+        app:itemTextColor="#1565C0" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/background_light">
+    android:background="@drawable/mulungushi_campus_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,20 +26,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="#E3F2FD"
-            app:boxStrokeColor="#1565C0"
-            app:boxStrokeWidth="2dp"
-            app:hintTextColor="#1565C0"
+            app:boxBackgroundColor="@color/text_field_bg"
+            app:boxStrokeColor="@color/text_field_stroke"
+            app:boxStrokeWidth="1dp"
+            app:hintTextColor="@color/primary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etClaimCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0D233A"
-                android:textColorHint="#4A5568"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_field_input"
+                android:textColorHint="@color/text_field_hint"
+                android:textSize="15sp"
                 android:hint="@string/label_claim_code" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,20 +47,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="#E3F2FD"
-            app:boxStrokeColor="#1565C0"
-            app:boxStrokeWidth="2dp"
-            app:hintTextColor="#1565C0"
+            app:boxBackgroundColor="@color/text_field_bg"
+            app:boxStrokeColor="@color/text_field_stroke"
+            app:boxStrokeWidth="1dp"
+            app:hintTextColor="@color/primary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etStudentNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0D233A"
-                android:textColorHint="#4A5568"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_field_input"
+                android:textColorHint="@color/text_field_hint"
+                android:textSize="15sp"
                 android:hint="@string/label_student_number"
                 android:inputType="number"
                 android:maxLength="9" />
@@ -72,20 +70,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="#E3F2FD"
-            app:boxStrokeColor="#1565C0"
-            app:boxStrokeWidth="2dp"
-            app:hintTextColor="#1565C0"
+            app:boxBackgroundColor="@color/text_field_bg"
+            app:boxStrokeColor="@color/text_field_stroke"
+            app:boxStrokeWidth="1dp"
+            app:hintTextColor="@color/primary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etStudentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0D233A"
-                android:textColorHint="#4A5568"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_field_input"
+                android:textColorHint="@color/text_field_hint"
+                android:textSize="15sp"
                 android:hint="@string/label_student_name"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_programme"
-            android:textColor="#0D233A"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginTop="8dp"
@@ -104,7 +101,7 @@
             android:id="@+id/spinnerProgramme"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#E3F2FD"
+            android:background="@color/text_field_bg"
             android:layout_marginBottom="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -112,20 +109,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="#E3F2FD"
-            app:boxStrokeColor="#1565C0"
-            app:boxStrokeWidth="2dp"
-            app:hintTextColor="#1565C0"
+            app:boxBackgroundColor="@color/text_field_bg"
+            app:boxStrokeColor="@color/text_field_stroke"
+            app:boxStrokeWidth="1dp"
+            app:hintTextColor="@color/primary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0D233A"
-                android:textColorHint="#4A5568"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_field_input"
+                android:textColorHint="@color/text_field_hint"
+                android:textSize="15sp"
                 android:hint="@string/label_username"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -135,22 +131,21 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="#E3F2FD"
-            app:boxStrokeColor="#1565C0"
-            app:boxStrokeWidth="2dp"
-            app:hintTextColor="#1565C0"
+            app:boxBackgroundColor="@color/text_field_bg"
+            app:boxStrokeColor="@color/text_field_stroke"
+            app:boxStrokeWidth="1dp"
+            app:hintTextColor="@color/primary"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#1565C0"
+            app:passwordToggleTint="@color/primary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0D233A"
-                android:textColorHint="#4A5568"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_field_input"
+                android:textColorHint="@color/text_field_hint"
+                android:textSize="15sp"
                 android:hint="@string/label_password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -158,11 +153,11 @@
         <Button
             android:id="@+id/btnSubmitRegister"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="54dp"
             android:text="@string/btn_register"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="#1565C0"
+            android:backgroundTint="@color/primary"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>

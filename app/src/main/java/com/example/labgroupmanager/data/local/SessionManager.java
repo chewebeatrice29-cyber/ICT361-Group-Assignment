@@ -15,6 +15,7 @@ public class SessionManager {
     private static final String KEY_REMEMBERED_PORTAL = "remembered_portal";
     private static final String KEY_SERVER_URL = "server_url";
     private static final String KEY_BACKGROUND_TIME = "background_time";
+    private static final String KEY_PROFILE_IMAGE_URI = "profile_image_uri";
     public static final String DEFAULT_BASE_URL = "http://10.0.2.2:3000/api/";
 
     // 5 minutes in milliseconds (5 * 60 * 1000 = 300,000 ms)
@@ -105,6 +106,14 @@ public class SessionManager {
 
     public boolean isLecturer() {
         return "LECTURER".equalsIgnoreCase(getUserRole());
+    }
+
+    public void setProfileImageUri(String uri) {
+        prefs.edit().putString(KEY_PROFILE_IMAGE_URI, uri).apply();
+    }
+
+    public String getProfileImageUri() {
+        return prefs.getString(KEY_PROFILE_IMAGE_URI, null);
     }
 
     public void clearSession() {
