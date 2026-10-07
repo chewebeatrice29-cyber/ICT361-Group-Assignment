@@ -1,0 +1,25 @@
+{
+  "name": "student-management",
+  "version": "1.0.0",
+  "description": "Student management API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "test": "jest --runInBand"
+  },
+  "keywords": [
+    "student",
+    "management",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
